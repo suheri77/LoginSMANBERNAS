@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="loginContainer">
+        <div class="logo">
+            <img src="LOGO BERNAS 2.png">
+        </div>
+        <div class="form">
+            <div class="group">
+                <h1>Login</h1>
+                <span style="color: blue;">
+                    SMAN BERNAS BINSUS Provinsi Riau
+                    JL. Abdul Jalil Pangkalan Kerinci
+                </span>
+            </div>
+            
+            <div class="group">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" placeholder=" " id="name" autocomplete="off">
+                <label for="name">Username...</label>
+            </div>
+            <div class="group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder=" " id="password" autocomplete="off">
+                <i class="fa-regular fa-eye" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+                <label for="password">Password...</label>
+            </div>
+            <div class="loginBtn">
+                <button onclick="login()">Login <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Objek untuk menyimpan informasi pengguna
+        var users = {
+            "admin": "password",
+            "X.1": "bernas1",
+            "X.2": "bernas2",
+            "X.3": "bernas3",
+            "X.5.1": "bernas5",
+            "X.5": "bernas5",
+            "X.6": "bernas6",
+            "X.7": "bernas7"
+        };
+
+        // Objek yang berisi username dan URL halaman tujuan yang sesuai
+        var redirectUrls = {
+            "admin": "https://example.com/admin",
+            "X.1": "#",
+            "X.2": "#",
+            "X.3": "#",
+            "X.5.1": "https://suheri77.github.io/quizinformatikav.2/",
+            "X.5": "https://suheri77.github.io/QUIZINFORMATIKA/",
+            "X.6": "#",
+            "X.7": "#"
+        };
+
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var togglePasswordIcon = document.getElementById("togglePassword");
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordIcon.classList.remove("fa-eye");
+                togglePasswordIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                togglePasswordIcon.classList.remove("fa-eye-slash");
+                togglePasswordIcon.classList.add("fa-eye");
+            }
+        }
+
+        function login() {
+            var username = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+
+            // Pengecekan apakah pengguna ada dalam objek pengguna dan kredensialnya cocok
+            if (users.hasOwnProperty(username) && users[username] === password) {
+                // Redirect ke URL yang sesuai dengan username
+                if (redirectUrls.hasOwnProperty(username)) {
+                    window.location.href = redirectUrls[username];
+                } else {
+                    // Jika tidak ada URL khusus untuk username tertentu, arahkan ke halaman default
+                    window.location.href = 'https://suheri77.github.io/quizinformatikav.2/';
+                }
+            } else {
+                alert('Username atau password salah!');
+            }
+        }
+    </script>
+</body>
+</html>
